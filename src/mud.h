@@ -40,9 +40,9 @@
 #endif
 
 #ifndef __cplusplus
-    typedef unsigned char bool;
-    #define true 1
-    #define false 0
+typedef unsigned char bool;
+#define true 1
+#define false 0
 #endif
 
 typedef int ch_ret;
@@ -213,7 +213,7 @@ typedef bool SPEC_FUN( CHAR_DATA * ch );
 #define MAX_STRING_LENGTH	 4096 /* buf */
 #define MAX_INPUT_LENGTH	 1024 /* arg */
 #define MAX_INBUF_SIZE		 1024
-#define MSL                    MAX_STRING_LENGTH 
+#define MSL                    MAX_STRING_LENGTH
 #define MIL                    MAX_INPUT_LENGTH
 
 #define HASHSTR   /* use string hashing */
@@ -385,8 +385,8 @@ struct extended_bitvector
 #include "color.h"
 #include "dns.h"
 #include "hotboot.h"
-#include "calendar.h" /* AFKMud Calendar Replacement - Samson */
-#include "weather.h"  /* Weather System Replacement - Kayle */
+#include "calendar.h"   /* AFKMud Calendar Replacement - Samson */
+#include "weather.h" /* Weather System Replacement - Kayle */
 #include "liquids.h" /* SMAUG Liquidtable Replacement - Nopey */
 #ifdef IMC
 #include "imc.h"
@@ -1011,7 +1011,7 @@ struct mpsleep_data
     */
    int ignorelevel;
    int iflevel;
-   bool ifstate[MAX_IFS][DO_ELSE+1];
+   bool ifstate[MAX_IFS][DO_ELSE + 1];
 
    /*
     * mprog_driver arguments 
@@ -2304,7 +2304,7 @@ struct char_data
    int home_vnum; /* hotboot tracker */
    int resetvnum;
    int resetnum;
-   bool loadedself; /* Used to see if mpmloaded self, if so skip changing the reset for it currently */
+   bool loadedself;  /* Used to see if mpmloaded self, if so skip changing the reset for it currently */
 };
 
 struct killed_data
@@ -2619,8 +2619,8 @@ struct area_data
    short reset_frequency;
    short max_players;
    short version;
-   short weatherx; /* Weather Cell Assignment for the X-Axis */
-   short weathery; /* Weather Cell Assignment for the Y-Axis */
+   short weatherx;   /* Weather Cell Assignment for the X-Axis */
+   short weathery;   /* Weather Cell Assignment for the Y-Axis */
 };
 
 /*
@@ -2698,14 +2698,18 @@ struct system_data
    bool WAIT_FOR_AUTH;  /* New players must be auth'ed */
    bool wizlock;  /* Wizlock status */
    int maxholiday;
-   /* Settings Things for calendar - Most changable in cset */
-   int secpertick; 
+   /*
+    * Settings Things for calendar - Most changable in cset 
+    */
+   int secpertick;
    int pulsepersec;
    int pulsetick;
    int pulseviolence;
    int pulsemobile;
    int pulsecalendar;
-   /* direct influence over the calendar */
+   /*
+    * direct influence over the calendar 
+    */
    int hoursperday;
    int daysperweek;
    int dayspermonth;
@@ -4485,8 +4489,8 @@ int number_mm args( ( void ) );
 int dice args( ( int number, int size ) );
 int interpolate args( ( int level, int value_00, int value_32 ) );
 void smash_tilde args( ( char *str ) );
-const char* smash_tilde args( ( const char *str ) );
-char* smash_tilde_copy args( ( const char *str ) );
+const char *smash_tilde args( ( const char *str ) );
+char *smash_tilde_copy args( ( const char *str ) );
 void hide_tilde args( ( char *str ) );
 const char *show_tilde args( ( const char *str ) );
 bool str_cmp args( ( const char *astr, const char *bstr ) );
@@ -4575,7 +4579,8 @@ EXT_BV multimeb( int bit, ... );
 const char *mprog_type_to_name( int type );
 
 /* mud_prog.c */
-bool mprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * object, const void *vo, int type );
+bool mprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * object, const void *vo,
+                           int type );
 void mprog_percent_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * object, void *vo, int type );
 void mprog_act_trigger( const char *buf, CHAR_DATA * mob, CHAR_DATA * ch, OBJ_DATA * obj, const void *vo );
 void mprog_bribe_trigger( CHAR_DATA * mob, CHAR_DATA * ch, int amount );
@@ -5029,7 +5034,7 @@ struct trv_data
    trv_type type;
    void *ext_mark;
    void *where;
-   void ** el;
+   void **el;
 };
 typedef struct trv_data TRV_DATA;
 

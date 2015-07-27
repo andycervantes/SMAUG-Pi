@@ -91,7 +91,7 @@ dns: resolver.o
 	chmod g+w resolver.o
 
 indent:
-	indent -ts3 -nut -nsaf -nsai -nsaw -npcs -npsl -ncs -nbc -bls -prs -bap -cbi0 -cli3 -bli0 -l125 -lp -i3 -cdb -c1 -cd1 -sc -pmt $(C_FILES)
+	indent -ts4 -ut -bap -bli0 -di1 -l190 -nlp -i4 -nbc -cli4 -sc -cdb -c1 -cd1 -nbfda -npcs -bad -hnl -nce -npsl -bl -prs -bls -blf -cbi4 -sbi0 -ncdw -ppi4 -ss -cs $(C_FILES)
 	indent -ts3 -nut -nsaf -nsai -nsaw -npcs -npsl -ncs -nbc -bls -prs -bap -cbi0 -cli3 -bli0 -l125 -lp -i3 -cdb -c1 -cd1 -sc -pmt $(H_FILES)
 
 indentclean:
