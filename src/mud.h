@@ -77,15 +77,15 @@ typedef int obj_ret;
  * Left the definitions in for backward compatibility to old code. - Samson 6/27/07
  */
 #if !defined(FALSE)
-#define FALSE false
+#    define FALSE 0
 #endif
 
 #if !defined(TRUE)
-#define TRUE true
+#    define TRUE 1
 #endif
 
 #if !defined(BERR)
-#define BERR 255
+#    define BERR 255
 #endif
 
 #define KEY( literal, field, value )   \

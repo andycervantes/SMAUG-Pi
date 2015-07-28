@@ -26,6 +26,10 @@
 #    define TRUE 1
 #endif
 
+#if !defined(BERR)
+#    define BERR -1
+#endif
+
 #ifndef __cplusplus
 typedef unsigned char bool;
 #endif
@@ -33,7 +37,7 @@ extern bool mud_down;
 
 #define STR_HASH_SIZE	1024
 
-struct hashstr_data
+struct __attribute__ ( ( packed ) ) hashstr_data
 {
 	struct hashstr_data *next;	/* next hash element */
 	unsigned short int links;	/* number of links to this string */

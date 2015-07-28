@@ -136,8 +136,6 @@ bool write_to_descriptor( DESCRIPTOR_DATA * d, const char *txt, int length );
  * Other local functions (OS-independent).
  */
 bool check_parse_name( const char *name, bool newchar );
-bool check_reconnect( DESCRIPTOR_DATA * d, const char *name, bool fConn );
-bool check_playing( DESCRIPTOR_DATA * d, const char *name, bool kick );
 int main( int argc, char **argv );
 void nanny( DESCRIPTOR_DATA * d, char *argument );
 bool flush_buffer( DESCRIPTOR_DATA * d, bool fPrompt );
@@ -148,6 +146,10 @@ void display_prompt( DESCRIPTOR_DATA * d );
 void set_pager_input( DESCRIPTOR_DATA * d, char *argument );
 bool pager_output( DESCRIPTOR_DATA * d );
 void mail_count( CHAR_DATA * ch );
+
+// Edited to compile on Arch Linux ARM. -AC
+short check_reconnect( DESCRIPTOR_DATA * d, const char *name, bool fConn );
+short check_playing( DESCRIPTOR_DATA * d, const char *name, bool kick );
 
 int port;
 
@@ -1811,7 +1813,7 @@ void show_title( DESCRIPTOR_DATA * d )
 void nanny_get_name( DESCRIPTOR_DATA * d, char *argument )
 {
 	CHAR_DATA *ch;
-	bool fOld, chk;
+	bool fOld;
 	char buf[MAX_STRING_LENGTH];
 
 	ch = d->character;
@@ -1927,11 +1929,11 @@ void nanny_get_name( DESCRIPTOR_DATA * d, char *argument )
 		close_socket( d, FALSE );
 		return;
 	}
+
 	/*
 	 *  Make sure the immortal host is from the correct place.
 	 *  Shaddai
 	 */
-
 	if ( IS_IMMORTAL( ch ) && sysdata.check_imm_host && !check_immortal_domain( ch, d->host ) )
 	{
 		log_printf_plus( LOG_COMM, sysdata.log_level, "%s's char being hacked from %s.", argument, d->host );
@@ -1940,12 +1942,11 @@ void nanny_get_name( DESCRIPTOR_DATA * d, char *argument )
 		return;
 	}
 
-
-	chk = check_reconnect( d, argument, FALSE );
-	if ( chk == BERR )
+	// Edited to compile on Arch Linux ARM. -AC
+	if ( ( check_reconnect( d, argument, FALSE ) ) == BERR )
 		return;
 
-	if ( chk )
+	if ( check_reconnect( d, argument, FALSE ) )
 	{
 		fOld = TRUE;
 	}
@@ -2013,7 +2014,7 @@ void nanny_get_old_password( DESCRIPTOR_DATA * d, char *argument )
 {
 	CHAR_DATA *ch;
 	char buf[MAX_STRING_LENGTH];
-	bool fOld, chk;
+	bool fOld;
 
 	ch = d->character;
 	write_to_buffer( d, "\r\n", 2 );
@@ -2034,15 +2035,15 @@ void nanny_get_old_password( DESCRIPTOR_DATA * d, char *argument )
 	if ( check_playing( d, ch->pcdata->filename, TRUE ) )
 		return;
 
-	chk = check_reconnect( d, ch->pcdata->filename, TRUE );
-	if ( chk == BERR )
+	// Edited to compile on Arch Linux ARM. -AC
+	if ( ( check_reconnect( d, ch->pcdata->filename, TRUE ) ) == BERR )
 	{
 		if ( d->character && d->character->desc )
 			d->character->desc = NULL;
 		close_socket( d, FALSE );
 		return;
 	}
-	if ( chk == TRUE )
+	if ( ( check_reconnect( d, ch->pcdata->filename, TRUE ) ) == TRUE )
 		return;
 
 	mudstrlcpy( buf, ch->pcdata->filename, MAX_STRING_LENGTH );
@@ -2726,8 +2727,9 @@ bool check_parse_name( const char *name, bool newchar )
 
 /*
  * Look for link-dead player to reconnect.
+ * Edited to compile on Arch Linux ARM. -AC
  */
-bool check_reconnect( DESCRIPTOR_DATA * d, const char *name, bool fConn )
+short check_reconnect( DESCRIPTOR_DATA * d, const char *name, bool fConn )
 {
 	CHAR_DATA *ch;
 
@@ -2779,8 +2781,9 @@ bool check_reconnect( DESCRIPTOR_DATA * d, const char *name, bool fConn )
 
 /*
  * Check if already playing.
+ * Edited to compile on Arch Linux ARM. -AC
  */
-bool check_playing( DESCRIPTOR_DATA * d, const char *name, bool kick )
+short check_playing( DESCRIPTOR_DATA * d, const char *name, bool kick )
 {
 	CHAR_DATA *ch;
 	DESCRIPTOR_DATA *dold;

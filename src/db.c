@@ -3382,7 +3382,7 @@ const char *fread_flagstring( FILE * fp )
 				ln++;
 				break;
 
-			case EOF:
+			case ( unsigned char ) EOF:
 				bug( "%s: EOF", __FUNCTION__ );
 				if ( fBootDb )
 					exit( 1 );
@@ -3456,7 +3456,7 @@ const char *fread_string( FILE * fp )
 				ln++;
 				break;
 
-			case EOF:
+			case ( unsigned char ) EOF:
 				bug( "Fread_string: EOF" );
 				if ( fBootDb )
 					exit( 1 );
@@ -3530,7 +3530,7 @@ char *fread_string_nohash( FILE * fp )
 				ln++;
 				break;
 
-			case EOF:
+			case ( unsigned char ) EOF:
 				bug( "Fread_string_no_hash: EOF" );
 				if ( fBootDb )
 					exit( 1 );
