@@ -27,7 +27,7 @@
 #endif
 
 #if !defined(BERR)
-#    define BERR -1
+#    define BERR 255
 #endif
 
 #ifndef __cplusplus
